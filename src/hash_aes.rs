@@ -7,8 +7,6 @@
 //! Implementations of correlation-robust hash functions (and their variants)
 //! based on fixed-key AES.
 
-#![feature(stdsimd, arm_target_feature)]
-
 use crate::{Aes128, Block, FIXED_KEY_AES128};
 use core::arch::aarch64::*;
 
