@@ -241,9 +241,9 @@ impl From<Block> for uint8x16_t {
     }
 }
 
-impl From<__m128i> for Block {
+impl From<uint8x16_t> for Block {
     #[inline]
-    fn from(m: __m128i) -> Self {
+    fn from(m: uint8x16_t) -> Self {
         Block(m)
     }
 }
