@@ -30,7 +30,7 @@
 #![feature(stdsimd, arm_target_feature)]
 
 use crate::Block;
-use core::arch::arm::*;
+use core::arch::x86_64::*;
 use core::mem;
 
 /// AES-256, encryption only.
