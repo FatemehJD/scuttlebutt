@@ -293,7 +293,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 #[cfg(feature = "serde")]
 impl Serialize for Block {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        serializer.serialize_bytes(&unsafe { std::mem::transmute::<__m128i, [u8; 16]>(self.0) })
+        serializer.serialize_bytes(&unsafe { std::mem::transmute::<uint8x16_t, [u8; 16]>(self.0) })
     }
 }
 
