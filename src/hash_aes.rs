@@ -10,7 +10,7 @@
 #![feature(stdsimd, arm_target_feature)]
 
 use crate::{Aes128, Block, FIXED_KEY_AES128};
-use core::arch::arm::*;
+use core::arch::aarch64::*;
 
 /// AES-based correlation-robust hash function.
 ///
@@ -50,10 +50,9 @@ impl AesHash {
     #[inline]
     pub fn ccr_hash(&self, i: Block, x: Block) -> Block {
         unsafe {
-            let x = _mm_xor_si128(
-                _mm_shuffle_epi32(x.into(), 78),
-                #[allow(overflowing_literals)]
-                _mm_and_si128(x.into(), _mm_set_epi64x(0xFFFF_FFFF_FFFF_FFFF, 0x00)),
+            let x = veorq_u8(
+                vextq_u8(x.into(), x.into(), 8),
+                vandq_u8(x.into(), vreinterpretq_u8_s64(vdupq_n_s64(0x00FFFFFFFFFFFFFF))),
             );
             self.cr_hash(i, Block::from(x))
         }
