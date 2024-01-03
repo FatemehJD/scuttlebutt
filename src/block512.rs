@@ -99,9 +99,9 @@ impl From<Block512> for [u32; 16] {
     }
 }
 
-impl From<Block512> for [__m128i; 4] {
+impl From<Block512> for [uint8x16_t; 4] {
     #[inline]
-    fn from(m: Block512) -> [__m128i; 4] {
+    fn from(m: Block512) -> [uint8x16_t; 4] {
         [m.0[0].into(), m.0[1].into(), m.0[2].into(), m.0[3].into()]
     }
 }
@@ -134,9 +134,9 @@ impl<'a> From<&'a mut Block512> for &'a mut [u8; 64] {
     }
 }
 
-impl From<[__m128i; 4]> for Block512 {
+impl From<[uint8x16_t; 4]> for Block512 {
     #[inline]
-    fn from(m: [__m128i; 4]) -> Block512 {
+    fn from(m: [uint8x16_t; 4]) -> Block512 {
         Block512([Block(m[0]), Block(m[1]), Block(m[2]), Block(m[3])])
     }
 }
