@@ -139,7 +139,7 @@ fn expand(key: uint8x16_t) -> [uint8x16_t; 11] {
 }
 
 union __U128 {
-    vector: __m128i,
+    vector: uint8x16_t,  // or the appropriate AArch64 SIMD type
     bytes: u128,
 }
 
